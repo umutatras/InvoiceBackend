@@ -2,6 +2,6 @@
 
 namespace InvoiceBackend.Infrastructure.Identity;
 
-public sealed class AppRole : IdentityRole<Guid>
+public sealed class AppRole : IdentityRole<int>
 {
 }

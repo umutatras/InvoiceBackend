@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InvoiceBackend.Persistence.Context;
 
-public class HizliBİlDbContext : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
+public class HizliBİlDbContext : IdentityDbContext<AppUser, AppRole, int, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
 {
     public HizliBİlDbContext()
     {
@@ -17,6 +17,9 @@ public class HizliBİlDbContext : IdentityDbContext<AppUser, AppRole, Guid, AppU
     }
 
     public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Invoice> Invoices { get; set; }
+    public DbSet<InvoiceLine> InvoiceLines { get; set; }
 
 
 

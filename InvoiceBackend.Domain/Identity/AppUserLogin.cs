@@ -2,6 +2,6 @@
 
 namespace InvoiceBackend.Infrastructure.Identity;
 
-public sealed class AppUserLogin : IdentityUserLogin<Guid>
+public sealed class AppUserLogin : IdentityUserLogin<int>
 {
 }

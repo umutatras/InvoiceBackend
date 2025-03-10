@@ -2,7 +2,7 @@
 
 namespace InvoiceBackend.Domain.Entities;
 
-public class RefreshToken : EntityBase<int>
+public sealed class RefreshToken : EntityBase<int>
 {
     public string Token { get; set; }
     public DateTime Expires { get; set; }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace InvoiceBackend.Infrastructure.Identity;
 
-public sealed class AppUser : IdentityUser<Guid>, IEntity<Guid>, ICreatedByEntity, IModifiedByEntity
+public sealed class AppUser : IdentityUser<int>, IEntity<int>, ICreatedByEntity, IModifiedByEntity
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

@@ -2,6 +2,6 @@
 
 namespace InvoiceBackend.Infrastructure.Identity;
 
-public sealed class AppUserToken : IdentityUserToken<Guid>
+public sealed class AppUserToken : IdentityUserToken<int>
 {
 }
