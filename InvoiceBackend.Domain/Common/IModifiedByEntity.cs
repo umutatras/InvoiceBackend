@@ -3,5 +3,5 @@
 public interface IModifiedByEntity
 {
     DateTimeOffset? ModifiedOn { get; set; }
-    string? ModifiedByUserId { get; set; }
+    int? ModifiedByUserId { get; set; }
 }

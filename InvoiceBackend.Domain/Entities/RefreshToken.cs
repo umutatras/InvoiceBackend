@@ -8,5 +8,5 @@ public sealed class RefreshToken : EntityBase<int>
     public DateTime Expires { get; set; }
     public string SecurityStamp { get; set; }
 
-    public Guid AppUserId { get; set; }
+    public int AppUserId { get; set; }
 }

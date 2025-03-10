@@ -13,14 +13,14 @@ public class UserSeeder : IEntityTypeConfiguration<AppUser>
 
         var initialUser = new AppUser
         {
-            Id = initialUserId,
+            Id = 1,
             UserName = "umut",
             NormalizedUserName = "UMUT",
             Email = "umut@gmail.com",
             NormalizedEmail = "UMUT@GMAIL.COM",
             EmailConfirmed = true,
-            CreatedByUserId = initialUserId.ToString(),
-            CreatedOn = new DateTimeOffset(new DateTime(2024, 08, 28)),
+            CreatedByUserId = 1,
+            CreatedOn = new DateTimeOffset(new DateTime(2025, 03, 11)),
             ConcurrencyStamp = Guid.NewGuid().ToString(),
             FirstName = "Umut",
             LastName = "Atraş",
