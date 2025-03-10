@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceBackend.Domain\InvoiceBackend.Domain.csproj" />
+    <ProjectReference Include="..\InvoiceBackend.SharedLibrary\InvoiceBackend.SharedLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
