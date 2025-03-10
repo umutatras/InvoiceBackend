@@ -16,12 +16,7 @@ public static class DependencyInjection
 
         services.AddDbContext<HizliBİlDbContext>(opt => opt.UseSqlServer(connectionString));
 
-
-
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-
-
-
 
         services.AddIdentity<AppUser, AppRole>(options =>
         {
