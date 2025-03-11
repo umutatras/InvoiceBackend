@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace InvoiceBackend.Application.Invoice.Commands.Delete;
 
-public class InvoiceDeleteCommandValidator
+public class InvoiceDeleteCommandValidator : AbstractValidator<InvoiceDeleteCommand>
 {
+    public InvoiceDeleteCommandValidator()
+    {
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("Id is not null");
+    }
 }

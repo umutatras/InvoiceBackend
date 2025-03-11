@@ -3,6 +3,8 @@ using InvoiceBackend.Application.Customer.Commands.Delete;
 using InvoiceBackend.Application.Customer.Commands.Update;
 using InvoiceBackend.Application.Customer.Queries.GetAll;
 using InvoiceBackend.Application.Invoice.Commands.Add;
+using InvoiceBackend.Application.Invoice.Commands.Delete;
+using InvoiceBackend.Application.Invoice.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +23,16 @@ public class InvoiceController : ApiControllerBase
     {
         return Ok(await Mediatr.Send(command, cancellationToken));
     }
-    //[HttpPut]
-    //public async Task<IActionResult> PUT(CustomerUpdateCommand command, CancellationToken cancellationToken)
-    //{
-    //    return Ok(await Mediatr.Send(command, cancellationToken));
-    //}
-    //[HttpDelete]
-    //public async Task<IActionResult> DELETE(CustomerDeleteCommand command, CancellationToken cancellationToken)
-    //{
-    //    return Ok(await Mediatr.Send(command, cancellationToken));
-    //}
+    [HttpPut]
+    public async Task<IActionResult> PUT(InvoiceUpdateCommand command, CancellationToken cancellationToken)
+    {
+        return Ok(await Mediatr.Send(command, cancellationToken));
+    }
+    [HttpDelete]
+    public async Task<IActionResult> DELETE(InvoiceDeleteCommand command, CancellationToken cancellationToken)
+    {
+        return Ok(await Mediatr.Send(command, cancellationToken));
+    }
 
     //[HttpGet]
     //public async Task<IActionResult> GET(CancellationToken cancellationToken)
