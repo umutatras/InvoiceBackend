@@ -16,13 +16,13 @@ public sealed class CustomerDeleteCommandHandler : IRequestHandler<CustomerDelet
 
     public async Task<ResponseDto<bool>> Handle(CustomerDeleteCommand request, CancellationToken cancellationToken)
     {
-        
-        var customerRepository = _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Customer>().GetByFilter(filter:x=>x.Id==request.Id,asNoTracking:true);
-        if(customerRepository is null)
+
+        var customerRepository = _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Customer>().GetByFilter(filter: x => x.Id == request.Id, asNoTracking: true);
+        if (customerRepository is null)
         {
             return new ResponseDto<bool>(false, "Customer not found");
-        } 
-      
+        }
+
         _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Customer>().Remove(customerRepository);
         int islemSonucu = _unitOfWork.SaveChanges();
         if (islemSonucu > 0)

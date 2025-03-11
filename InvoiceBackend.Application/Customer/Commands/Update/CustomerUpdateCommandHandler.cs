@@ -16,14 +16,14 @@ public sealed class CustomerUpdateCommandHandler : IRequestHandler<CustomerUpdat
 
     public async Task<ResponseDto<bool>> Handle(CustomerUpdateCommand request, CancellationToken cancellationToken)
     {
-        
-        var customerRepository = _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Customer>().GetByFilter(filter:x=>x.Id==request.Id,asNoTracking:true);
-        if(customerRepository is null)
+
+        var customerRepository = _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Customer>().GetByFilter(filter: x => x.Id == request.Id, asNoTracking: true);
+        if (customerRepository is null)
         {
             return new ResponseDto<bool>(false, "Customer not found");
-        } 
-        customerRepository.TaxNumber = request.TaxNumber;   
-        customerRepository.Title = request.Title;customerRepository.Address = request.Address;  customerRepository.EMail = request.EMail;   customerRepository.ModifiedByUserId = _currentUserService.UserId; customerRepository.ModifiedOn = DateTime.Now;
+        }
+        customerRepository.TaxNumber = request.TaxNumber;
+        customerRepository.Title = request.Title; customerRepository.Address = request.Address; customerRepository.EMail = request.EMail; customerRepository.ModifiedByUserId = _currentUserService.UserId; customerRepository.ModifiedOn = DateTime.Now;
         _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Customer>().Update(customerRepository);
         int islemSonucu = _unitOfWork.SaveChanges();
         if (islemSonucu > 0)

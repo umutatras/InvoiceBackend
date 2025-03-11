@@ -1,5 +1,4 @@
-﻿using InvoiceBackend.Application.Auth.Commands.Register;
-using InvoiceBackend.Application.Customer.Commands.Add;
+﻿using InvoiceBackend.Application.Customer.Commands.Add;
 using InvoiceBackend.Application.Customer.Commands.Delete;
 using InvoiceBackend.Application.Customer.Commands.Update;
 using InvoiceBackend.Application.Customer.Queries.GetAll;

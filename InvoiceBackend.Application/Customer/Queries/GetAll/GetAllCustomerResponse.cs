@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InvoiceBackend.Application.Customer.Queries.GetAll;
+﻿namespace InvoiceBackend.Application.Customer.Queries.GetAll;
 
 public sealed record GetAllCustomerResponse
 {
@@ -13,11 +7,11 @@ public sealed record GetAllCustomerResponse
     public string Title { get; set; }
     public string Address { get; set; }
     public string EMail { get; set; }
-    public GetAllCustomerResponse(int id,string taxNumber,string title,string address,string email)
+    public GetAllCustomerResponse(int id, string taxNumber, string title, string address, string email)
     {
-        Id = id;    
-        TaxNumber =taxNumber
-            ; Title=title; Address=address; EMail = email;
+        Id = id;
+        TaxNumber = taxNumber
+            ; Title = title; Address = address; EMail = email;
 
     }
 }
