@@ -1,7 +1,6 @@
 ﻿using InvoiceBackend.Application.Interfaces;
 using InvoiceBackend.Application.Models.General;
 using MediatR;
-using InvoiceBackend.Domain.Entities;
 
 namespace InvoiceBackend.Application.Customer.Commands.Add;
 
