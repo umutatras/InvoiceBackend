@@ -13,8 +13,7 @@ namespace InvoiceBackend.Persistence.Configurations
             builder.Property(il => il.ItemName).IsRequired().HasMaxLength(200);
             builder.Property(il => il.Quentity).IsRequired();
             builder.Property(il => il.Price).HasColumnType("decimal(18,2)");
-            builder.HasOne<Invoice>().WithMany().HasForeignKey(il => il.InvoiceId).OnDelete(DeleteBehavior.NoAction); ;
-            builder.HasOne<AppUser>().WithMany().HasForeignKey(il => il.CreatedByUserId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(s=>s.Invoice).WithMany(s=>s.InvoiceLines).HasForeignKey(il => il.InvoiceId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace InvoiceBackend.Domain.Entities;
 
-public sealed class InvoiceLine : EntityBase<int>
+public  class InvoiceLine : EntityBase<int>
 {
     public int InvoiceId { get; set; }
     public string ItemName { get; set; }
@@ -10,6 +10,6 @@ public sealed class InvoiceLine : EntityBase<int>
     public decimal Price { get; set; }
 
     #region Navigation Properties   
-    public Invoice Invoice { get; set; }
+    public virtual Invoice Invoice { get; set; }
     #endregion
 }

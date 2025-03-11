@@ -12,7 +12,6 @@ public class InvoiceConfiguration : IEntityTypeConfiguration<Invoice>
         builder.HasKey(i => i.Id);
         builder.Property(i => i.InvoiceNumber).IsRequired().HasMaxLength(50);
         builder.Property(i => i.TotalAmount).HasColumnType("decimal(18,2)");
-        builder.HasOne<Customer>().WithMany().HasForeignKey(i => i.CustomerId).OnDelete(DeleteBehavior.NoAction);
-        builder.HasOne<AppUser>().WithMany().HasForeignKey(i => i.CreatedByUserId).OnDelete(DeleteBehavior.NoAction); ;
+        builder.HasOne(i=>i.Customer).WithMany(s=>s.Invoices).HasForeignKey(i => i.CustomerId).OnDelete(DeleteBehavior.NoAction);
     }
 }

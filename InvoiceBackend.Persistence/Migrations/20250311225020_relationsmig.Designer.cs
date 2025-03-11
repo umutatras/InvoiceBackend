@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceBackend.Persistence.Migrations
 {
     [DbContext(typeof(HizliBİlDbContext))]
-    [Migration("20250311000602_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250311225020_relationsmig")]
+    partial class relationsmig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,9 +89,6 @@ namespace InvoiceBackend.Persistence.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId1")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("InvoiceDate")
                         .HasColumnType("datetime2");
 
@@ -111,11 +108,7 @@ namespace InvoiceBackend.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedByUserId");
-
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("CustomerId1");
 
                     b.ToTable("Invoices");
                 });
@@ -137,9 +130,6 @@ namespace InvoiceBackend.Persistence.Migrations
                     b.Property<int>("InvoiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InvoiceId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("ItemName")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -159,11 +149,7 @@ namespace InvoiceBackend.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedByUserId");
-
                     b.HasIndex("InvoiceId");
-
-                    b.HasIndex("InvoiceId1");
 
                     b.ToTable("InvoiceLines");
                 });
@@ -365,7 +351,7 @@ namespace InvoiceBackend.Persistence.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc34cf1a-b9b2-4d84-b1ff-681c60b193d5",
+                            ConcurrencyStamp = "72b6db9c-4d64-4f31-ae62-592f5ebd1ea9",
                             CreatedByUserId = 1,
                             CreatedOn = new DateTimeOffset(new DateTime(2025, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Email = "umut@gmail.com",
@@ -375,9 +361,9 @@ namespace InvoiceBackend.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "UMUT@GMAIL.COM",
                             NormalizedUserName = "UMUT",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHgwxugARIwJBnz88TbHp+0gZMlk6pVp5okMkmVQAOABCnpJp4xwJGJXH2W7f0KA/A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOrFBS9pHoFVY6AYRjJcqfG54ZIeCO/Ad7DMaXLVS0IRlxTl+lQ1bFtCQrjnJKHh+A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "14738173-430d-48cc-a941-3ba7280e888c",
+                            SecurityStamp = "f752357b-5135-4ee2-9445-88015a9ec785",
                             TwoFactorEnabled = false,
                             UserName = "umut"
                         });
@@ -476,21 +462,10 @@ namespace InvoiceBackend.Persistence.Migrations
 
             modelBuilder.Entity("InvoiceBackend.Domain.Entities.Invoice", b =>
                 {
-                    b.HasOne("InvoiceBackend.Infrastructure.Identity.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("InvoiceBackend.Domain.Entities.Customer", null)
-                        .WithMany()
+                    b.HasOne("InvoiceBackend.Domain.Entities.Customer", "Customer")
+                        .WithMany("Invoices")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("InvoiceBackend.Domain.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -498,21 +473,10 @@ namespace InvoiceBackend.Persistence.Migrations
 
             modelBuilder.Entity("InvoiceBackend.Domain.Entities.InvoiceLine", b =>
                 {
-                    b.HasOne("InvoiceBackend.Infrastructure.Identity.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("InvoiceBackend.Domain.Entities.Invoice", null)
-                        .WithMany()
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("InvoiceBackend.Domain.Entities.Invoice", "Invoice")
                         .WithMany("InvoiceLines")
-                        .HasForeignKey("InvoiceId1")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Invoice");
@@ -576,6 +540,11 @@ namespace InvoiceBackend.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("InvoiceBackend.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Invoices");
                 });
 
             modelBuilder.Entity("InvoiceBackend.Domain.Entities.Invoice", b =>

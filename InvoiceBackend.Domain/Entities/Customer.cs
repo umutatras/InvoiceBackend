@@ -2,11 +2,12 @@
 
 namespace InvoiceBackend.Domain.Entities;
 
-public sealed class Customer : EntityBase<int>
+public  class Customer : EntityBase<int>
 {
     public string TaxNumber { get; set; }
     public string Title { get; set; }
     public string Address { get; set; }
     public string EMail { get; set; }
+    public virtual List<Invoice> Invoices { get; set; } = new List<Invoice>();
 
 }

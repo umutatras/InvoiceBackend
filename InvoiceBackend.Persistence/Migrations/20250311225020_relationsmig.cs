@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace InvoiceBackend.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class relationsmig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -224,7 +225,6 @@ namespace InvoiceBackend.Persistence.Migrations
                     InvoiceNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     InvoiceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CustomerId1 = table.Column<int>(type: "int", nullable: false),
                     ModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     ModifiedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -238,17 +238,6 @@ namespace InvoiceBackend.Persistence.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Invoices_Customers_CustomerId1",
-                        column: x => x.CustomerId1,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Invoices_Users_CreatedByUserId",
-                        column: x => x.CreatedByUserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -261,7 +250,6 @@ namespace InvoiceBackend.Persistence.Migrations
                     ItemName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Quentity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    InvoiceId1 = table.Column<int>(type: "int", nullable: false),
                     ModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     ModifiedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -275,32 +263,16 @@ namespace InvoiceBackend.Persistence.Migrations
                         column: x => x.InvoiceId,
                         principalTable: "Invoices",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InvoiceLines_Invoices_InvoiceId1",
-                        column: x => x.InvoiceId1,
-                        principalTable: "Invoices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_InvoiceLines_Users_CreatedByUserId",
-                        column: x => x.CreatedByUserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByUserId", "CreatedOn", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByUserId", "ModifiedOn", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "bc34cf1a-b9b2-4d84-b1ff-681c60b193d5", 1, new DateTimeOffset(new DateTime(2025, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)), "umut@gmail.com", true, "Umut", "Atraş", false, null, null, null, "UMUT@GMAIL.COM", "UMUT", "AQAAAAIAAYagAAAAEHgwxugARIwJBnz88TbHp+0gZMlk6pVp5okMkmVQAOABCnpJp4xwJGJXH2W7f0KA/A==", null, false, "14738173-430d-48cc-a941-3ba7280e888c", false, "umut" });
+                values: new object[] { 1, 0, "72b6db9c-4d64-4f31-ae62-592f5ebd1ea9", 1, new DateTimeOffset(new DateTime(2025, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)), "umut@gmail.com", true, "Umut", "Atraş", false, null, null, null, "UMUT@GMAIL.COM", "UMUT", "AQAAAAIAAYagAAAAEOrFBS9pHoFVY6AYRjJcqfG54ZIeCO/Ad7DMaXLVS0IRlxTl+lQ1bFtCQrjnJKHh+A==", null, false, "f752357b-5135-4ee2-9445-88015a9ec785", false, "umut" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_CreatedByUserId",
                 table: "Customers",
-                column: "CreatedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_InvoiceLines_CreatedByUserId",
-                table: "InvoiceLines",
                 column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
@@ -309,24 +281,9 @@ namespace InvoiceBackend.Persistence.Migrations
                 column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceLines_InvoiceId1",
-                table: "InvoiceLines",
-                column: "InvoiceId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_CreatedByUserId",
-                table: "Invoices",
-                column: "CreatedByUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Invoices_CustomerId",
                 table: "Invoices",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_CustomerId1",
-                table: "Invoices",
-                column: "CustomerId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshTokens_AppUserId_Token",

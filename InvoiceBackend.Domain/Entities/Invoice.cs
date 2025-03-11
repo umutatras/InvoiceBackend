@@ -2,7 +2,7 @@
 
 namespace InvoiceBackend.Domain.Entities;
 
-public sealed class Invoice : EntityBase<int>
+public  class Invoice : EntityBase<int>
 {
     public int CustomerId { get; set; }
     public string InvoiceNumber { get; set; }
@@ -10,7 +10,7 @@ public sealed class Invoice : EntityBase<int>
     public decimal TotalAmount { get; set; }
 
     #region Navigation Properties
-    public Customer Customer { get; set; }
-    public List<InvoiceLine> InvoiceLines { get; set; } = new List<InvoiceLine>();
+    public virtual Customer Customer { get; set; }
+    public virtual List<InvoiceLine> InvoiceLines { get; set; } = new List<InvoiceLine>();
     #endregion
 }
