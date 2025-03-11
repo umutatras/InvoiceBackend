@@ -1,5 +1,4 @@
 ﻿using InvoiceBackend.Domain.Common;
-using InvoiceBackend.Infrastructure.Identity;
 
 namespace InvoiceBackend.Domain.Entities;
 

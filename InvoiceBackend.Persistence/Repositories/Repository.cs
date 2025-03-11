@@ -1,5 +1,4 @@
 ﻿using InvoiceBackend.Application.Interfaces;
-using InvoiceBackend.Domain.Common;
 using InvoiceBackend.Persistence.Context;
 using InvoiceBackend.SharedLibrary;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace InvoiceBackend.Persistence.Repositories;
 
-public class Repository<T> : IRepository<T> where T : EntityBase<T>
+public class Repository<T> : IRepository<T> where T : class
 {
     private readonly HizliBİlDbContext _context;
 
@@ -70,7 +69,7 @@ public class Repository<T> : IRepository<T> where T : EntityBase<T>
         _context.Set<T>().Remove(entity);
     }
 
-    public void Create(T entity)
+    public void Add(T entity)
     {
         _context.Set<T>().Add(entity);
     }

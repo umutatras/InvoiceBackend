@@ -92,7 +92,7 @@ namespace InvoiceBackend.Persistence.Migrations
                     ModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     ModifiedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false)
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -229,7 +229,7 @@ namespace InvoiceBackend.Persistence.Migrations
                     ModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     ModifiedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false)
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -266,7 +266,7 @@ namespace InvoiceBackend.Persistence.Migrations
                     ModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     ModifiedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false)
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -292,7 +292,7 @@ namespace InvoiceBackend.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByUserId", "CreatedOn", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByUserId", "ModifiedOn", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "8161b6ae-e0da-49c4-b753-24be7232e311", 1, new DateTimeOffset(new DateTime(2025, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)), "umut@gmail.com", true, "Umut", "Atraş", false, null, null, null, "UMUT@GMAIL.COM", "UMUT", "AQAAAAIAAYagAAAAENYGb2sLMXHB8w2QqNpFH4I+MhB1jK/nqXRJ43HC3zsAF4uC98rKNa3rGhknLR8ysQ==", null, false, "7879bfd4-a65c-4b4d-8fe9-738c981ce049", false, "umut" });
+                values: new object[] { 1, 0, "bc34cf1a-b9b2-4d84-b1ff-681c60b193d5", 1, new DateTimeOffset(new DateTime(2025, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)), "umut@gmail.com", true, "Umut", "Atraş", false, null, null, null, "UMUT@GMAIL.COM", "UMUT", "AQAAAAIAAYagAAAAEHgwxugARIwJBnz88TbHp+0gZMlk6pVp5okMkmVQAOABCnpJp4xwJGJXH2W7f0KA/A==", null, false, "14738173-430d-48cc-a941-3ba7280e888c", false, "umut" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_CreatedByUserId",

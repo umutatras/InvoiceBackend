@@ -35,7 +35,7 @@ namespace InvoiceBackend.Persistence.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -77,7 +77,7 @@ namespace InvoiceBackend.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -125,7 +125,7 @@ namespace InvoiceBackend.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -176,7 +176,8 @@ namespace InvoiceBackend.Persistence.Migrations
                     b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -280,7 +281,8 @@ namespace InvoiceBackend.Persistence.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -360,7 +362,7 @@ namespace InvoiceBackend.Persistence.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8161b6ae-e0da-49c4-b753-24be7232e311",
+                            ConcurrencyStamp = "bc34cf1a-b9b2-4d84-b1ff-681c60b193d5",
                             CreatedByUserId = 1,
                             CreatedOn = new DateTimeOffset(new DateTime(2025, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Email = "umut@gmail.com",
@@ -370,9 +372,9 @@ namespace InvoiceBackend.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "UMUT@GMAIL.COM",
                             NormalizedUserName = "UMUT",
-                            PasswordHash = "AQAAAAIAAYagAAAAENYGb2sLMXHB8w2QqNpFH4I+MhB1jK/nqXRJ43HC3zsAF4uC98rKNa3rGhknLR8ysQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHgwxugARIwJBnz88TbHp+0gZMlk6pVp5okMkmVQAOABCnpJp4xwJGJXH2W7f0KA/A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7879bfd4-a65c-4b4d-8fe9-738c981ce049",
+                            SecurityStamp = "14738173-430d-48cc-a941-3ba7280e888c",
                             TwoFactorEnabled = false,
                             UserName = "umut"
                         });
@@ -466,8 +468,7 @@ namespace InvoiceBackend.Persistence.Migrations
                     b.HasOne("InvoiceBackend.Infrastructure.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("InvoiceBackend.Domain.Entities.Invoice", b =>
@@ -475,8 +476,7 @@ namespace InvoiceBackend.Persistence.Migrations
                     b.HasOne("InvoiceBackend.Infrastructure.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("InvoiceBackend.Domain.Entities.Customer", null)
                         .WithMany()
@@ -498,8 +498,7 @@ namespace InvoiceBackend.Persistence.Migrations
                     b.HasOne("InvoiceBackend.Infrastructure.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("InvoiceBackend.Domain.Entities.Invoice", null)
                         .WithMany()

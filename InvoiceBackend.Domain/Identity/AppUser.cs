@@ -10,5 +10,5 @@ public sealed class AppUser : IdentityUser<int>, IEntity<int>, ICreatedByEntity,
     public DateTimeOffset? ModifiedOn { get; set; }
     public int? ModifiedByUserId { get; set; }
     public DateTimeOffset CreatedOn { get; set; }
-    public int CreatedByUserId { get; set; }
+    public int? CreatedByUserId { get; set; }
 }

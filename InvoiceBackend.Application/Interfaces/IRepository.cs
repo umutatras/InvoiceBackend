@@ -1,10 +1,9 @@
-﻿using InvoiceBackend.Domain.Common;
-using InvoiceBackend.SharedLibrary;
+﻿using InvoiceBackend.SharedLibrary;
 using System.Linq.Expressions;
 
 namespace InvoiceBackend.Application.Interfaces;
 
-public interface IRepository<T> where T : EntityBase<T>
+public interface IRepository<T> where T : class
 {
     IQueryable<T> Query();
     IQueryable<T> Query(Expression<Func<T, bool>> predicate);
@@ -18,7 +17,7 @@ public interface IRepository<T> where T : EntityBase<T>
     T GetByFilter(Expression<Func<T, bool>> filter, bool asNoTracking = false);
     IQueryable<T> GetQuery();
     void Remove(T entity);
-    void Create(T entity);
+    void Add(T entity);
     void Update(T entity, T unchanged);
     void Update(T entity);
 }

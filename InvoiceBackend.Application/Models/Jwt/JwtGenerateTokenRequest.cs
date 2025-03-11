@@ -2,10 +2,10 @@
 {
     public class JwtGenerateTokenRequest
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Email { get; set; }
         public IList<string> Roles { get; set; }
-        public JwtGenerateTokenRequest(Guid id, string email, IList<string> roles)
+        public JwtGenerateTokenRequest(int id, string email, IList<string> roles)
         {
             Id = id;
             Email = email;

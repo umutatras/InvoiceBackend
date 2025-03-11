@@ -1,4 +1,5 @@
-﻿using InvoiceBackend.Domain.Settings;
+﻿using InvoiceBackend.Application.Interfaces;
+using InvoiceBackend.Domain.Settings;
 using InvoiceBackend.Infrastructure.Identity;
 using InvoiceBackend.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
@@ -10,12 +11,12 @@ namespace InvoiceBackend.Persistence;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<HizliBİlDbContext>(opt => opt.UseSqlServer(connectionString));
-
+        services.AddScoped<IUnitOfWork, InvoiceBackend.Persistence.UnitOfWork.UnitOfWork>();
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
         services.AddIdentity<AppUser, AppRole>(options =>

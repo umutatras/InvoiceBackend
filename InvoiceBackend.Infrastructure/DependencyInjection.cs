@@ -1,5 +1,4 @@
 ﻿using InvoiceBackend.Application.Interfaces;
-using InvoiceBackend.Domain.Settings;
 using InvoiceBackend.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +14,7 @@ public static class DependencyInjection
 
         services.AddScoped<IJwtService, JwtManager>();
 
-        //services.AddScoped<IIdentityService, IdentityManager>();
-
+        services.AddScoped<IIdentityService, IdentityManager>();
         return services;
     }
 }

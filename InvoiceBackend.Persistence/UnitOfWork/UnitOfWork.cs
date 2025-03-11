@@ -1,5 +1,4 @@
 ﻿using InvoiceBackend.Application.Interfaces;
-using InvoiceBackend.Domain.Common;
 using InvoiceBackend.Persistence.Context;
 using InvoiceBackend.Persistence.Repositories;
 
@@ -13,7 +12,7 @@ public class UnitOfWork : IUnitOfWork
     {
         _context = context;
     }
-    public IRepository<T> GetRepository<T>() where T : EntityBase<T>
+    public IRepository<T> GetRepository<T>() where T : class
     {
         return new Repository<T>(_context);
     }

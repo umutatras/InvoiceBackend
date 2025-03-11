@@ -37,7 +37,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<AppUser>
 
         builder.HasMany<AppUserToken>().WithOne().HasForeignKey(ut => ut.UserId).IsRequired();
 
-        builder.HasMany<AppUserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();   
+        builder.HasMany<AppUserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
 
 
         builder.HasMany<RefreshToken>()
@@ -53,7 +53,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(user => user.ModifiedOn)
             .IsRequired(false);
 
-        builder.Property(user => user.ModifiedByUserId)           
+        builder.Property(user => user.ModifiedByUserId)
             .IsRequired(false);
 
 

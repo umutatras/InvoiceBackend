@@ -8,7 +8,7 @@ public sealed class UserLoginConfiguration : IEntityTypeConfiguration<AppUserLog
 {
     public void Configure(EntityTypeBuilder<AppUserLogin> builder)
     {
-       
+
         builder.HasKey(l => new { l.LoginProvider, l.ProviderKey });
 
         builder.Property(l => l.LoginProvider).HasMaxLength(128);
