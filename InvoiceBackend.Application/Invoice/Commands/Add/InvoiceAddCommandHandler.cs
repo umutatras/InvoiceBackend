@@ -1,12 +1,6 @@
-﻿using InvoiceBackend.Application.Customer.Commands.Add;
-using InvoiceBackend.Application.Interfaces;
+﻿using InvoiceBackend.Application.Interfaces;
 using InvoiceBackend.Application.Models.General;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvoiceBackend.Application.Invoice.Commands.Add;
 
@@ -24,13 +18,13 @@ public sealed class InvoiceAddCommandHandler : IRequestHandler<InvoiceAddCommand
     {
         InvoiceBackend.Domain.Entities.Invoice invoice = new InvoiceBackend.Domain.Entities.Invoice
         {
-            CustomerId=request.CustomerId,
+            CustomerId = request.CustomerId,
             InvoiceDate = request.InvoiceDate,
-            TotalAmount = request.TotalAmount,           
+            TotalAmount = request.TotalAmount,
             InvoiceNumber = request.InvoiceNumber,
             CreatedByUserId = _currentUserService.UserId,
             CreatedOn = DateTime.Now,
-            InvoiceLines = request.InvoiceLines.Select(s=>new Domain.Entities.InvoiceLine {ItemName=s.ItemName,Price=s.Price,Quentity=s.Quentity}).ToList(),
+            InvoiceLines = request.InvoiceLines.Select(s => new Domain.Entities.InvoiceLine { ItemName = s.ItemName, Price = s.Price, Quentity = s.Quentity }).ToList(),
         };
         var invoiceRepository = _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Invoice>();
         invoiceRepository.Add(invoice);

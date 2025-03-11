@@ -15,8 +15,8 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.Property(c => c.Address).HasMaxLength(500);
         builder.Property(c => c.EMail).HasMaxLength(100);
 
-        builder.HasOne<AppUser>().WithMany().HasForeignKey(c => c.CreatedByUserId).OnDelete(DeleteBehavior.NoAction); 
-        builder.HasMany(c=>c.Invoices).WithOne(c=>c.Customer).HasForeignKey(c => c.CustomerId).OnDelete(DeleteBehavior.NoAction); 
+        builder.HasOne<AppUser>().WithMany().HasForeignKey(c => c.CreatedByUserId).OnDelete(DeleteBehavior.NoAction);
+        builder.HasMany(c => c.Invoices).WithOne(c => c.Customer).HasForeignKey(c => c.CustomerId).OnDelete(DeleteBehavior.NoAction);
 
     }
 }

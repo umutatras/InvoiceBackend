@@ -1,12 +1,8 @@
-﻿using InvoiceBackend.Application.Customer.Commands.Add;
-using InvoiceBackend.Application.Customer.Commands.Delete;
-using InvoiceBackend.Application.Customer.Commands.Update;
-using InvoiceBackend.Application.Customer.Queries.GetAll;
-using InvoiceBackend.Application.Invoice.Commands.Add;
+﻿using InvoiceBackend.Application.Invoice.Commands.Add;
 using InvoiceBackend.Application.Invoice.Commands.Delete;
 using InvoiceBackend.Application.Invoice.Commands.Update;
+using InvoiceBackend.Application.Invoice.Queries.GetAll;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceBackend.API.Controllers;
@@ -34,9 +30,9 @@ public class InvoiceController : ApiControllerBase
         return Ok(await Mediatr.Send(command, cancellationToken));
     }
 
-    //[HttpGet]
-    //public async Task<IActionResult> GET(CancellationToken cancellationToken)
-    //{
-    //    return Ok(await Mediatr.Send(new GetAllCustomerQuery(), cancellationToken));
-    //}
+    [HttpGet]
+    public async Task<IActionResult> GET([FromQuery]GetAllInvoicesQuery query, CancellationToken cancellationToken)
+    {
+        return Ok(await Mediatr.Send(query, cancellationToken));
+    }
 }

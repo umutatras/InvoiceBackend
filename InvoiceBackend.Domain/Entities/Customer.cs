@@ -2,7 +2,7 @@
 
 namespace InvoiceBackend.Domain.Entities;
 
-public  class Customer : EntityBase<int>
+public class Customer : EntityBase<int>
 {
     public string TaxNumber { get; set; }
     public string Title { get; set; }

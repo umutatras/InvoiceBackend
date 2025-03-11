@@ -1,5 +1,4 @@
 ﻿using InvoiceBackend.Domain.Entities;
-using InvoiceBackend.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +12,7 @@ namespace InvoiceBackend.Persistence.Configurations
             builder.Property(il => il.ItemName).IsRequired().HasMaxLength(200);
             builder.Property(il => il.Quentity).IsRequired();
             builder.Property(il => il.Price).HasColumnType("decimal(18,2)");
-            builder.HasOne(s=>s.Invoice).WithMany(s=>s.InvoiceLines).HasForeignKey(il => il.InvoiceId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(s => s.Invoice).WithMany(s => s.InvoiceLines).HasForeignKey(il => il.InvoiceId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

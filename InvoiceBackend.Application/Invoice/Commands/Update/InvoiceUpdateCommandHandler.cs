@@ -1,12 +1,6 @@
 ﻿using InvoiceBackend.Application.Interfaces;
-using InvoiceBackend.Application.Invoice.Commands.Add;
 using InvoiceBackend.Application.Models.General;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvoiceBackend.Application.Invoice.Commands.Update;
 
@@ -22,9 +16,9 @@ public sealed class InvoiceUpdateCommandHandler : IRequestHandler<InvoiceUpdateC
 
     public async Task<ResponseDto<bool>> Handle(InvoiceUpdateCommand request, CancellationToken cancellationToken)
     {
-      
+
         var invoiceRepository = _unitOfWork.GetRepository<InvoiceBackend.Domain.Entities.Invoice>().Find(request.Id);
-        if(invoiceRepository is null)
+        if (invoiceRepository is null)
         {
             return new ResponseDto<bool>(false, "Invoice not found");
         }
@@ -34,7 +28,7 @@ public sealed class InvoiceUpdateCommandHandler : IRequestHandler<InvoiceUpdateC
         invoiceRepository.InvoiceNumber = request.InvoiceNumber;
         invoiceRepository.ModifiedByUserId = _currentUserService.UserId;
         invoiceRepository.ModifiedOn = DateTime.Now;
-       invoiceRepository.InvoiceLines = request.InvoiceLines.Select(s => new Domain.Entities.InvoiceLine { ItemName = s.ItemName,Price = s.Price, Quentity = s.Quentity }).ToList();
+        invoiceRepository.InvoiceLines = request.InvoiceLines.Select(s => new Domain.Entities.InvoiceLine { ItemName = s.ItemName, Price = s.Price, Quentity = s.Quentity }).ToList();
         int islemSonucu = _unitOfWork.SaveChanges();
 
         if (islemSonucu > 0)

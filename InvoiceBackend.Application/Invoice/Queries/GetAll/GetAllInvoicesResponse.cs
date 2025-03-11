@@ -1,10 +1,8 @@
-﻿using InvoiceBackend.Application.Models.General;
-using InvoiceBackend.Application.Models.Invoice;
-using MediatR;
+﻿using InvoiceBackend.Application.Models.Invoice;
 
-namespace InvoiceBackend.Application.Invoice.Commands.Update;
+namespace InvoiceBackend.Application.Invoice.Queries.GetAll;
 
-public class InvoiceUpdateCommand : IRequest<ResponseDto<bool>>
+public class GetAllInvoicesResponse
 {
     public int Id { get; set; }
     public int CustomerId { get; set; }

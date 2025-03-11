@@ -2,7 +2,7 @@
 
 namespace InvoiceBackend.Domain.Entities;
 
-public  class InvoiceLine : EntityBase<int>
+public class InvoiceLine : EntityBase<int>
 {
     public int InvoiceId { get; set; }
     public string ItemName { get; set; }
