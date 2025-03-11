@@ -4,7 +4,7 @@ using InvoiceBackend.Application.Auth.RefreshToken;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingBackend.WebAPI.Controllers;
+namespace InvoiceBackend.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
