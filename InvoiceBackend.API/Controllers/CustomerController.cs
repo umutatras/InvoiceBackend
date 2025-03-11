@@ -1,5 +1,6 @@
 ﻿using InvoiceBackend.Application.Auth.Commands.Register;
 using InvoiceBackend.Application.Customer.Commands.Add;
+using InvoiceBackend.Application.Customer.Commands.Delete;
 using InvoiceBackend.Application.Customer.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,11 @@ public class CustomerController : ApiControllerBase
     }
     [HttpPut]
     public async Task<IActionResult> PUT(CustomerUpdateCommand command, CancellationToken cancellationToken)
+    {
+        return Ok(await Mediatr.Send(command, cancellationToken));
+    }
+    [HttpDelete]
+    public async Task<IActionResult> DELETE(CustomerDeleteCommand command, CancellationToken cancellationToken)
     {
         return Ok(await Mediatr.Send(command, cancellationToken));
     }
