@@ -11,6 +11,6 @@ public interface IIdentityService
     Task<IdentityRegisterResponse> RegisterAsync(IdentityRegisterRequest request);
 
 
-    Task<bool> CheckSecurityStampAsync(Guid userId, string securityStamp);
+    Task<bool> CheckSecurityStampAsync(int userId, string securityStamp);
     Task<IdentityRefreshTokenResponse> RefreshTokenAsync(IdentityRefreshTokenRequest request);
 }

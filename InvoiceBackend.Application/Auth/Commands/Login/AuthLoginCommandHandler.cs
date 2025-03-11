@@ -19,5 +19,5 @@ public class AuthLoginCommandHandler : IRequestHandler<AuthLoginCommand, Respons
         return new ResponseDto<AuthLoginDto>(AuthLoginDto.FromIdentityLoginResponse(response));
     }
 
-  
+
 }

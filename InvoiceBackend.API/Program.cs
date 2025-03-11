@@ -1,8 +1,8 @@
 using InvoiceBackend.API;
 using InvoiceBackend.API.Filters;
 using InvoiceBackend.Application;
-using InvoiceBackend.Persistence;
 using InvoiceBackend.Infrastructure;
+using InvoiceBackend.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(opt =>

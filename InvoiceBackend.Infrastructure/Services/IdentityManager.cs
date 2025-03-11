@@ -57,7 +57,7 @@ public class IdentityManager : IIdentityService
         .AnyAsync(x => x.Email == email && x.EmailConfirmed);
     }
 
-    public async Task<bool> CheckSecurityStampAsync(Guid userId, string securityStamp)
+    public async Task<bool> CheckSecurityStampAsync(int userId, string securityStamp)
     {
         var user = await _userManager.FindByIdAsync(userId.ToString());
 
