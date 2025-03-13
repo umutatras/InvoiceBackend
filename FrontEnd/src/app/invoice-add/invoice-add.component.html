@@ -1,0 +1,96 @@
+<!-- src/app/invoice.component.html -->
+
+<div class="container mt-5">
+  <h2>Create Invoice</h2>
+  <form (ngSubmit)="addInvoice()">
+    <!-- Customer ID -->
+    <div class="mb-3">
+      <label for="customerId" class="form-label">Customer ID</label>
+      <input
+        type="number"
+        id="customerId"
+        class="form-control"
+        [(ngModel)]="invoice.customerId"
+        name="customerId"
+        required
+      />
+    </div>
+
+    <!-- Invoice Number -->
+    <div class="mb-3">
+      <label for="invoiceNumber" class="form-label">Invoice Number</label>
+      <input
+        type="text"
+        id="invoiceNumber"
+        class="form-control"
+        [(ngModel)]="invoice.invoiceNumber"
+        name="invoiceNumber"
+        required
+      />
+    </div>
+
+    <!-- Invoice Date -->
+    <div class="mb-3">
+      <label for="invoiceDate" class="form-label">Invoice Date</label>
+      <input
+        type="date"
+        id="invoiceDate"
+        class="form-control"
+        [(ngModel)]="invoice.invoiceDate"
+        name="invoiceDate"
+        required
+      />
+    </div>
+
+    <!-- Total Amount -->
+    <div class="mb-3">
+      <label for="totalAmount" class="form-label">Total Amount</label>
+      <input
+        type="number"
+        id="totalAmount"
+        class="form-control"
+        [(ngModel)]="invoice.totalAmount"
+        name="totalAmount"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Invoice Lines</label>
+      <div *ngFor="let line of invoice.invoiceLines; let i = index" class="mb-3">
+        <div class="row">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="line.itemName"
+              name="itemName{{i}}"
+              placeholder="Item Name"
+            />
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="line.quantity"
+              name="quantity{{i}}"
+              placeholder="Quantity"
+            />
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="line.price"
+              name="price{{i}}"
+              placeholder="Price"
+            />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="addInvoiceLine()">Add Line</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Invoice</button>
+  </form>
+</div>

@@ -1,0 +1,83 @@
+<div class="container mt-4">
+  <h2>Faturalar</h2>
+
+  <!-- Tarih Aralığı Seçme Alanı -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Başlangıç Tarihi</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="startDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Bitiş Tarihi</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-4">
+      <button class="btn btn-primary mt-4" (click)="getInvoices()">Filtrele</button>
+    </div>
+  </div>
+
+  <!-- Fatura Tablosu -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Müşteri ID</th>
+        <th>Fatura No</th>
+        <th>Fatura Tarihi</th>
+        <th>Toplam Tutar</th>
+        <th>Detaylar</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{ invoice.id }}</td>
+        <td>{{ invoice.customerId }}</td>
+        <td>{{ invoice.invoiceNumber }}</td>
+        <td>{{ invoice.invoiceDate | date }}</td>
+        <td>{{ invoice.totalAmount | currency:'TRY' }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="toggleDetails(invoice.id)">
+            Detayları Göster
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteInvoice(invoice.id)">
+            Sil
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-warning" (click)="openUpdateModal(invoice)">
+            Güncelle
+          </button>
+        </td>
+      </tr>
+      <tr *ngFor="let invoice of invoices">
+        <td colspan="8">
+          <div *ngIf="invoice.showDetails">
+            <h5>Fatura Satırları:</h5>
+            <ul>
+              <li *ngFor="let item of invoice.invoiceLines">
+                {{ item.itemName }} - {{ item.quantity }} x {{ item.price | currency:'TRY' }}
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Güncelleme Popup Formu -->
+  <app-invoice-update *ngIf="showUpdateModal" [invoice]="currentInvoice" (close)="closeUpdateModal()"></app-invoice-update>
+</div>
