@@ -32,6 +32,7 @@ public static class DependencyInjection
             options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
+
         })
        .AddJwtBearer(options =>
        {
